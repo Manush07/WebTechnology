@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Corner Bistro — Order</title>
+</head>
+<body>
+  <nav >
+    <a href="index.html" >Home</a>
+    <a href="menu.html" >Menu</a>
+    <a href="order.html" >Order</a>
+    <a href="contact.html" >Contact</a>
+    <a href="../index.html" >Back to Collection of Experiments</a>
+  </nav>
+
+  <main>
+    <h1 style="margin:6px 0">Place an Order</h1>
+    <p >Complete this form to submit your order (demo only).</p>
+
+    <form action="#" method="post">
+      <fieldset >
+        <legend>Contact</legend>
+        <label>Name:<br><input name="name" required ></label><br>
+        <label>Phone:<br><input name="phone" type="tel" ></label>
+      </fieldset>
+
+      <fieldset >
+        <legend>Order</legend>
+        <p>Write your order as text, e.g. "Masala Dosa x2, Bisi Bele Bath x1"</p>
+        <label>Order details<br><textarea name="items" rows="4" required ></textarea></label><br>
+        <label>Pickup or Delivery:<br>
+          <select name="fulfillment" >
+            <option>Pickup</option>
+            <option>Delivery</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <button type="submit" >Submit Order</button>
+    </form>
+
+  </main>
+</body>
+</html>
