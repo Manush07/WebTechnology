@@ -1,37 +1,57 @@
-function add() {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
-    const result = num1 + num2;
-    document.getElementById('result').innerHTML = 'Result: ' + result;
+let currentInput = '';
+let previousInput = '';
+let operation = null;
+
+function appendNumber(number) {
+    if (currentInput.includes('.') && number === '.') return;
+    currentInput += number;
+    updateDisplay();
 }
 
-function subtract() {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
-    const result = num1 - num2;
-    document.getElementById('result').innerHTML = 'Result: ' + result;
-}
-
-function multiply() {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
-    const result = num1 * num2;
-    document.getElementById('result').innerHTML = 'Result: ' + result;
-}
-
-function divide() {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
-    if (num2 === 0) {
-        document.getElementById('result').innerHTML = 'Error: Division by zero';
-    } else {
-        const result = num1 / num2;
-        document.getElementById('result').innerHTML = 'Result: ' + result;
+function setOperation(op) {
+    if (currentInput === '') return;
+    if (previousInput !== '') {
+        calculate();
     }
+    operation = op;
+    previousInput = currentInput;
+    currentInput = '';
 }
 
-function reset() {
-    document.getElementById('num1').value = '';
-    document.getElementById('num2').value = '';
-    document.getElementById('result').innerHTML = '';
+function calculate() {
+    let result;
+    const prev = parseFloat(previousInput);
+    const current = parseFloat(currentInput);
+    if (isNaN(prev) || isNaN(current)) return;
+    switch (operation) {
+        case '+':
+            result = prev + current;
+            break;
+        case '-':
+            result = prev - current;
+            break;
+        case '*':
+            result = prev * current;
+            break;
+        case '/':
+            result = prev / current;
+            break;
+        default:
+            return;
+    }
+    currentInput = result.toString();
+    operation = null;
+    previousInput = '';
+    updateDisplay();
+}
+
+function clearDisplay() {
+    currentInput = '';
+    previousInput = '';
+    operation = null;
+    updateDisplay();
+}
+
+function updateDisplay() {
+    document.getElementById('display').innerText = currentInput || '0';
 }
