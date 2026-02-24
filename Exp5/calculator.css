@@ -42,3 +42,7 @@ button {
 .clear {
     background-color: #a00;
 }
+
+.delete {
+    background-color: #f90;
+}
